@@ -9,6 +9,16 @@
 5. Mempool
 6. Miner
 
+### Hashing in Java
+
+We will use the `MessageDigest` class:
+
+```java
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] digest = md.digest(data.getBytes(StandardCharsets.UTF_8));
+String hash = HexFormat.of().formatHex(digest);
+```
+
 ### Class Diagram
 
 ```mermaid
