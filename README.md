@@ -45,12 +45,9 @@ class Block {
   -long timestamp
   -String previousHash
   -String hash
-  -int nonce
+  -long nonce
   -List~Transaction~ transactions
-  +Block(int index, String previousHash)
-  +Block(int index, String previousHash, List~Transaction~ txs)
-  +addTransaction(Transaction tx) boolean
-  +computeHash() String
+  +Block(int index, long timestamp, String previousHash, String hash, long nonce, List<Transaction> transactions)
   +getHash() String
 }
 class Blockchain {
@@ -61,15 +58,13 @@ class Blockchain {
   +Blockchain(int difficulty)
   +append(Block b) boolean
   +getLastBlock() Block
-  +getBalanceOf(String address) double
   +isValid() boolean
   +size() int
 }
 class Miner {
   -String alias
-  -String rewardAddress
   -Mempool mempool
-  +Miner(String alias, String rewardAddress, Mempool mempool)
+  +Miner(String alias, Mempool mempool)
   +mine(Blockchain bc) Block
   +mine(Blockchain bc, int maxTx) Block
   +getRewardAddress() String
@@ -88,4 +83,3 @@ Miner ..> Block : creates
 Block ..> HashUtil : uses
 Transaction ..> HashUtil : uses
 ```
-
